@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Hebin Technology Blog</title>
-  <subtitle>I love you, WenYunxiao！</subtitle>
+  <subtitle>一个有态度的技术博客！</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.fakerbin.com/"/>
-  <updated>2016-03-14T02:27:45.733Z</updated>
+  <updated>2016-03-14T02:30:01.645Z</updated>
   <id>http://www.fakerbin.com/</id>
   
   <author>
@@ -20,11 +20,15 @@
     <link href="http://www.fakerbin.com/2016-03-14/Pacman%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/"/>
     <id>http://www.fakerbin.com/2016-03-14/Pacman主题配置/</id>
     <published>2016-03-14T01:26:57.000Z</published>
-    <updated>2016-03-14T02:27:45.733Z</updated>
+    <updated>2016-03-14T02:30:01.645Z</updated>
     
-    <content type="html"></content>
+    <content type="html">&lt;blockquote&gt;&lt;p&gt;Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.&lt;/p&gt;
+&lt;footer&gt;&lt;strong&gt;David Levithan&lt;/strong&gt;&lt;cite&gt;Wide Awake&lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;</content>
     
     <summary type="html">
+    
+      &lt;blockquote&gt;&lt;p&gt;Do not just seek happiness for yourself. Seek happiness for all. Through kindness. Through mercy.&lt;/p&gt;
+&lt;footer&gt;&lt;strong&gt;David L
     
     </summary>
     
