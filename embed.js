@@ -2,7 +2,7 @@
 function sskadmin(e) {
     var ssk = '';
     if (e.user_id == 6261927479154311938) {
-        if (checkMobile()) {
+        if (sskcheckMobile()) {
             ssk = '<span class="this_ua sskadmin">R00T</span><br><br>';
         } else {
             ssk = '<span class="this_ua sskadmin">R00T</span>';
