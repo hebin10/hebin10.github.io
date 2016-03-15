@@ -1,7 +1,7 @@
 //判断是否为博主
 function sskadmin(e) {
     var ssk = '';
-    if(e.user_id==【你的多说id】){
+    if(e.user_id== 6261927479154311938 ){
         ssk = '<span class="sskadmin">博主【此处可以自定义文字】'
     }
     return ssk+"</span> ";
