@@ -3,9 +3,9 @@ function sskadmin(e) {
     var ssk = '';
     if (e.user_id == 6261927479154311938) {
         if (sskcheckMobile()) {
-            ssk = '<span class="sskadmin">R00T</span><br><br>';
+            ssk = '<span class="sskadmin">博主</span><br><br>';
         } else {
-            ssk = '<span class="sskadmin">R00T</span>';
+            ssk = '<span class="sskadmin">博主</span>';
         }
     } else {
         if (sskcheckMobile()) {
