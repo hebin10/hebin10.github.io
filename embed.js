@@ -8,7 +8,7 @@ function sskadmin(e) {
             ssk = '<span class="this_ua sskadmin">R00T</span>';
         }
     } else {
-        if (checkMobile()) {
+        if (sskcheckMobile()) {
             ssk = '<br><br>';
         }
     }
