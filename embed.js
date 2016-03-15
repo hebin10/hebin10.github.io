@@ -1,12 +1,20 @@
 //判断是否为博主
 function sskadmin(e) {
     var ssk = '';
-    if(e.user_id== 6261927479154311938 ){
-        ssk = '<span class="sskadmin">博主'
+    if (e.user_id == 6261927479154311938) {
+        if (checkMobile()) {
+            ssk = '<span class="this_ua sskadmin">R00T</span><br><br>';
+        } else {
+            ssk = '<span class="this_ua sskadmin">R00T</span>';
+        }
+    } else {
+        if (checkMobile()) {
+            ssk = '<br><br>';
+        }
     }
-    return ssk+"</span> ";
+    return ssk;
 }
-//移动客户端判断开始，作用：在移动客户端显示不同样式
+//移动客户端判断开始，作用：在移动客户端显示不同样式6261927479154311938
 function sskcheckMobile() {
     var isiPad = navigator.userAgent.match(/iPad/i) != null;
     if (isiPad) {
@@ -942,7 +950,7 @@ function(e, t, s) {
             s = e.post,
             i = e.options,
             r = s.author;
-            if (t += '<li class="ds-post" data-post-id="' + s.post_id + '"><div class="ds-post-self" data-post-id="' + s.post_id + '" data-thread-id="' + s.thread_id + '" data-root-id="' + s.root_id + '" data-source="' + s.source + '"><div class="ds-avatar"', r.user_id && (t += ' data-user-id="' + r.user_id + '"'), t += ">" + et.avatar(r), S.sourceName[s.source] && (t += et.serviceIcon(s.source)), t += '</div><div class="ds-comment-body"><div class="ds-comment-header">', r.url ? (t += '<a class="ds-user-name ds-highlight" data-qqt-account="' + (r.qqt_account || "") + '" href="' + u(r.url) + '" ', r.user_id && (t += " onclick=\"this.href='" + a() + "/user-url/?user_id=" + r.user_id + "';\""), t += ' rel="nofollow" target="_blank"', r.user_id && (t += ' data-user-id="' + r.user_id + '"'), t += ">" + u(r.name) + "</a>") : (t += '<span class="ds-user-name"', r.user_id && (t += ' data-user-id="' + r.user_id + '"'), t += ' data-qqt-account="' + (r.qqt_account || "") + '">' + u(r.name) + "</span>"), t += "<span class=\"sskadmin\">" + sskadmin(r) +"</span>",  t += "<span class=\"ua\">" + sskua(s.agent) + "</span><span class=\"ua\">" + sskos(s.agent) + "</span>", t += "</div>", 1 == i.max_depth && i.show_context && s.parents.length) {
+            if (t += '<li class="ds-post" data-post-id="' + s.post_id + '"><div class="ds-post-self" data-post-id="' + s.post_id + '" data-thread-id="' + s.thread_id + '" data-root-id="' + s.root_id + '" data-source="' + s.source + '"><div class="ds-avatar"', r.user_id && (t += ' data-user-id="' + r.user_id + '"'), t += ">" + et.avatar(r), S.sourceName[s.source] && (t += et.serviceIcon(s.source)), t += '</div><div class="ds-comment-body"><div class="ds-comment-header">', r.url ? (t += '<a class="ds-user-name ds-highlight" data-qqt-account="' + (r.qqt_account || "") + '" href="' + u(r.url) + '" ', r.user_id && (t += " onclick=\"this.href='" + a() + "/user-url/?user_id=" + r.user_id + "';\""), t += ' rel="nofollow" target="_blank"', r.user_id && (t += ' data-user-id="' + r.user_id + '"'), t += ">" + u(r.name) + "</a>") : (t += '<span class="ds-user-name"', r.user_id && (t += ' data-user-id="' + r.user_id + '"'), t += ' data-qqt-account="' + (r.qqt_account || "") + '">' + u(r.name) + "</span>"), t += "<span class=\"sskadmin\">" + sskadmin(r) +"</span>",  t += "<span class=\"ua\">" + sskos(s.agent) + "</span><span class=\"ua\">" + sskua(s.agent) + "</span>", t += "</div>", 1 == i.max_depth && i.show_context && s.parents.length) {
                 t += '<ol id="ds-ctx">';
                 var n = lt.getJSON(s.parents);
                 if (n) for (var o, d = -1,
