@@ -17,7 +17,7 @@ function checkMobile() {
 
 function sskadmin(e) {
     var ssk = '';
-    if (e.user_id == 6261927479154311938) {
+    if (e.user_id == 867394) {
         if (checkMobile()) {
             ssk = '<span class="this_ua sskadmin">R00T</span><br><br>';
         } else {
@@ -45,7 +45,6 @@ function show_ua(string) {
     }
 }
 //UA End
-
 !
 function(e, t, s) {
     function a() {
