@@ -1,0 +1,367 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>本博客主题设置 | Hebin Technology Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Hebin">
+    
+    <meta name="description" content="添加多说评论系统及个性化
+- 参考网址:
+我采用的方法
+ 大部分的js文件、css文件的修改都是根据该文件。
+
+参考网址1
+ 本篇文章内容写的不是太好，但是可以参考其主题的设定方式。
+
+参考网址2
+
+JS代码格式化工具网址
+
+多说官网
+
+多说官方embed.js下载：http://static.du">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Hebin Technology Blog" title="Hebin Technology Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hebin Technology Blog">Hebin Technology Blog</a></h1>
+				<h2 class="blog-motto">一个有态度的技术博客！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/categories">分类</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.fakerbin.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016-03-15/本博客主题设置/" title="本博客主题设置" itemprop="url">本博客主题设置</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://www.fakerbin.com" title="Hebin">Hebin</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2016-03-15T06:06:46.000Z" itemprop="datePublished">2016-03-15</time>
+    更新日期:<time datetime="2016-03-15T14:01:42.308Z" itemprop="dateModified">2016-03-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加多说评论系统及个性化"><span class="toc-number">1.</span> <span class="toc-text">添加多说评论系统及个性化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考网址"><span class="toc-number">1.1.</span> <span class="toc-text">- 参考网址:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加返回文章顶部按钮"><span class="toc-number">2.</span> <span class="toc-text">添加返回文章顶部按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加EJS代码："><span class="toc-number">2.1.</span> <span class="toc-text">- 添加EJS代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加JS代码："><span class="toc-number">2.2.</span> <span class="toc-text">- 添加JS代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加引用："><span class="toc-number">2.3.</span> <span class="toc-text">- 添加引用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加按钮图片："><span class="toc-number">2.4.</span> <span class="toc-text">- 添加按钮图片：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主题颜色配置"><span class="toc-number">3.</span> <span class="toc-text">主题颜色配置</span></a></li></ol>
+		</div>
+		
+		<h2 id="添加多说评论系统及个性化"><a href="#添加多说评论系统及个性化" class="headerlink" title="添加多说评论系统及个性化"></a>添加多说评论系统及个性化</h2><hr>
+<h3 id="参考网址"><a href="#参考网址" class="headerlink" title="- 参考网址:"></a>- 参考网址:</h3><ol>
+<li><p><a href="http://ssk.91txh.com/209#" target="_blank" rel="external">我采用的方法</a></p>
+<p> 大部分的js文件、css文件的修改都是根据该文件。</p>
+</li>
+<li><p><a href="http://wsgzao.github.io/post/duoshuo/" target="_blank" rel="external">参考网址1</a></p>
+<p> 本篇文章内容写的不是太好，但是可以参考其主题的设定方式。</p>
+</li>
+<li><p><a href="https://myhloli.com/duoshuo-ua-and-admin-tab.html" target="_blank" rel="external">参考网址2</a></p>
+</li>
+<li><p><a href="http://tool.chinaz.com/Tools/JsFormat.aspx" target="_blank" rel="external">JS代码格式化工具网址</a></p>
+</li>
+<li><p><a href="http://www.duoshuo.com" target="_blank" rel="external">多说官网</a></p>
+</li>
+<li><p>多说官方embed.js下载：<a href="http://static.duoshuo.com/embed.js" target="_blank" rel="external">http://static.duoshuo.com/embed.js</a></p>
+</li>
+<li><p><a href="http://wsgzao.github.io/post/hexo-jacman/#" target="_blank" rel="external">基于Pacman改写的Jacman主题参考</a></p>
+</li>
+<li><p><a href="http://yangjian.me/pacman/hello/introducing-pacman-theme/" target="_blank" rel="external">Pacman主题官方介绍</a></p>
+</li>
+</ol>
+<p><br></p>
+<h2 id="添加返回文章顶部按钮"><a href="#添加返回文章顶部按钮" class="headerlink" title="添加返回文章顶部按钮"></a>添加返回文章顶部按钮</h2><hr>
+<blockquote>
+<p>Hexo已经为用户实现了清晰的模块化设计，我们只需要根据规范编写合适的EJS和JS文件放入指定目录并在所需位置进行引用即可，这里给大家分享如何为Hexo增加返回顶部功能。</p>
+</blockquote>
+<p><a href="http://wsgzao.github.io/post/hexo-scroll-to-top/" target="_blank" rel="external">参考网址：Hexo添加返回顶部按钮</a></p>
+<h3 id="添加EJS代码："><a href="#添加EJS代码：" class="headerlink" title="- 添加EJS代码："></a>- 添加EJS代码：</h3><pre><code>新建文件/themes/pacman/layout/_partial/totop.ejs，添加如下代码:
+</code></pre><figure class="highlight py"><table><tr><td class="code"><pre><span class="line">i = <span class="string">"I love you!"</span></span><br><span class="line"><span class="keyword">print</span> i</span><br><span class="line">ddd</span><br></pre></td></tr></table></figure>
+<h3 id="添加JS代码："><a href="#添加JS代码：" class="headerlink" title="- 添加JS代码："></a>- 添加JS代码：</h3><h3 id="添加引用："><a href="#添加引用：" class="headerlink" title="- 添加引用："></a>- 添加引用：</h3><h3 id="添加按钮图片："><a href="#添加按钮图片：" class="headerlink" title="- 添加按钮图片："></a>- 添加按钮图片：</h3><p><br></p>
+<h2 id="主题颜色配置"><a href="#主题颜色配置" class="headerlink" title="主题颜色配置"></a>主题颜色配置</h2><hr>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Hexo/">Hexo</a><a href="/tags/Pacman/">Pacman</a>
+  </div>
+
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/本博客主题/">本博客主题</a>
+</div>
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://www.fakerbin.com/2016-03-15/本博客主题设置/" data-title="本博客主题设置 | Hebin Technology Blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加多说评论系统及个性化"><span class="toc-number">1.</span> <span class="toc-text">添加多说评论系统及个性化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考网址"><span class="toc-number">1.1.</span> <span class="toc-text">- 参考网址:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加返回文章顶部按钮"><span class="toc-number">2.</span> <span class="toc-text">添加返回文章顶部按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加EJS代码："><span class="toc-number">2.1.</span> <span class="toc-text">- 添加EJS代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加JS代码："><span class="toc-number">2.2.</span> <span class="toc-text">- 添加JS代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加引用："><span class="toc-number">2.3.</span> <span class="toc-text">- 添加引用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加按钮图片："><span class="toc-number">2.4.</span> <span class="toc-text">- 添加按钮图片：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主题颜色配置"><span class="toc-number">3.</span> <span class="toc-text">主题颜色配置</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+			<li><a href="/categories/本博客主题/" title="本博客主题">本博客主题<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Pacman/" title="Pacman">Pacman<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> hahhahahahhah <br/>
+			nimamammamamamammama</p>
+	</section>
+	 
+	<div class="social-font clearfix">
+		
+		
+		
+		<a href="https://github.com/hebin10" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2016 
+		
+		<a href="http://www.fakerbin.com" target="_blank" title="Hebin">Hebin</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//www.fakerbin.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+<div id="totop" style="position:fixed;bottom:150px;right:50px;cursor: pointer;">
+<a title="返回顶部"><img src="/img/scrolltotop.png"/></a>
+</div>
+<script src="/js/totop.js"></script>
+
+  </body>
+</html>

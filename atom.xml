@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.fakerbin.com/"/>
-  <updated>2016-03-14T05:04:48.308Z</updated>
+  <updated>2016-03-15T14:01:42.308Z</updated>
   <id>http://www.fakerbin.com/</id>
   
   <author>
@@ -16,52 +16,58 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Pacman主题配置</title>
-    <link href="http://www.fakerbin.com/2016-03-14/Pacman%E4%B8%BB%E9%A2%98%E9%85%8D%E7%BD%AE/"/>
-    <id>http://www.fakerbin.com/2016-03-14/Pacman主题配置/</id>
-    <published>2016-03-14T01:26:57.000Z</published>
-    <updated>2016-03-14T05:04:48.308Z</updated>
+    <title>本博客主题设置</title>
+    <link href="http://www.fakerbin.com/2016-03-15/%E6%9C%AC%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE/"/>
+    <id>http://www.fakerbin.com/2016-03-15/本博客主题设置/</id>
+    <published>2016-03-15T06:06:46.000Z</published>
+    <updated>2016-03-15T14:01:42.308Z</updated>
     
-    <content type="html">&lt;h1 id=&quot;Pacman&quot;&gt;&lt;a href=&quot;#Pacman&quot; class=&quot;headerlink&quot; title=&quot;Pacman&quot;&gt;&lt;/a&gt;Pacman&lt;/h1&gt;&lt;p&gt;Pacman is a flat and responsive design theme for &lt;a href=&quot;http://hexo.io&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://A-limon.github.io/pacman&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Demo&lt;/a&gt; || &lt;a href=&quot;http://yangjian.me&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Alimon’s Blog&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;中文说明请访问&lt;a href=&quot;http://A-limon.github.io/pacman/hello/introducing-pacman-theme/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;这里&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Installation&quot;&gt;&lt;a href=&quot;#Installation&quot; class=&quot;headerlink&quot; title=&quot;Installation&quot;&gt;&lt;/a&gt;Installation&lt;/h2&gt;&lt;h3 id=&quot;Install&quot;&gt;&lt;a href=&quot;#Install&quot; class=&quot;headerlink&quot; title=&quot;Install&quot;&gt;&lt;/a&gt;Install&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git clone https://github.com/A-limon/pacman.git themes/pacman&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;Pacman requires Hexo 2.4.5 and above.&lt;/strong&gt; &lt;/p&gt;
-&lt;h3 id=&quot;Enable&quot;&gt;&lt;a href=&quot;#Enable&quot; class=&quot;headerlink&quot; title=&quot;Enable&quot;&gt;&lt;/a&gt;Enable&lt;/h3&gt;&lt;p&gt;Modify &lt;code&gt;theme&lt;/code&gt; setting in blog folder&lt;code&gt;_config.yml&lt;/code&gt; to &lt;code&gt;pacman&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;Update&quot;&gt;&lt;a href=&quot;#Update&quot; class=&quot;headerlink&quot; title=&quot;Update&quot;&gt;&lt;/a&gt;Update&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;cd themes/pacman&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;git pull&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;strong&gt;please backup your &lt;code&gt;_config.yml&lt;/code&gt; file before update.&lt;/strong&gt; &lt;/p&gt;
-&lt;h2 id=&quot;Configuration&quot;&gt;&lt;a href=&quot;#Configuration&quot; class=&quot;headerlink&quot; title=&quot;Configuration&quot;&gt;&lt;/a&gt;Configuration&lt;/h2&gt;&lt;p&gt;Modify settings in  &lt;code&gt;/themes/pacman/_config.yml&lt;/code&gt;.&lt;/p&gt;
+    <content type="html">&lt;h2 id=&quot;添加多说评论系统及个性化&quot;&gt;&lt;a href=&quot;#添加多说评论系统及个性化&quot; class=&quot;headerlink&quot; title=&quot;添加多说评论系统及个性化&quot;&gt;&lt;/a&gt;添加多说评论系统及个性化&lt;/h2&gt;&lt;hr&gt;
+&lt;h3 id=&quot;参考网址&quot;&gt;&lt;a href=&quot;#参考网址&quot; class=&quot;headerlink&quot; title=&quot;- 参考网址:&quot;&gt;&lt;/a&gt;- 参考网址:&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://ssk.91txh.com/209#&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;我采用的方法&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; 大部分的js文件、css文件的修改都是根据该文件。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://wsgzao.github.io/post/duoshuo/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考网址1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt; 本篇文章内容写的不是太好，但是可以参考其主题的设定方式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://myhloli.com/duoshuo-ua-and-admin-tab.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考网址2&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://tool.chinaz.com/Tools/JsFormat.aspx&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;JS代码格式化工具网址&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.duoshuo.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;多说官网&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;多说官方embed.js下载：&lt;a href=&quot;http://static.duoshuo.com/embed.js&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://static.duoshuo.com/embed.js&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://wsgzao.github.io/post/hexo-jacman/#&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;基于Pacman改写的Jacman主题参考&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://yangjian.me/pacman/hello/introducing-pacman-theme/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Pacman主题官方介绍&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&quot;添加返回文章顶部按钮&quot;&gt;&lt;a href=&quot;#添加返回文章顶部按钮&quot; class=&quot;headerlink&quot; title=&quot;添加返回文章顶部按钮&quot;&gt;&lt;/a&gt;添加返回文章顶部按钮&lt;/h2&gt;&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Hexo已经为用户实现了清晰的模块化设计，我们只需要根据规范编写合适的EJS和JS文件放入指定目录并在所需位置进行引用即可，这里给大家分享如何为Hexo增加返回顶部功能。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;http://wsgzao.github.io/post/hexo-scroll-to-top/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考网址：Hexo添加返回顶部按钮&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;添加EJS代码：&quot;&gt;&lt;a href=&quot;#添加EJS代码：&quot; class=&quot;headerlink&quot; title=&quot;- 添加EJS代码：&quot;&gt;&lt;/a&gt;- 添加EJS代码：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;新建文件/themes/pacman/layout/_partial/totop.ejs，添加如下代码:
+&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight py&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;i = &lt;span class=&quot;string&quot;&gt;&quot;I love you!&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; i&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ddd&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;添加JS代码：&quot;&gt;&lt;a href=&quot;#添加JS代码：&quot; class=&quot;headerlink&quot; title=&quot;- 添加JS代码：&quot;&gt;&lt;/a&gt;- 添加JS代码：&lt;/h3&gt;&lt;h3 id=&quot;添加引用：&quot;&gt;&lt;a href=&quot;#添加引用：&quot; class=&quot;headerlink&quot; title=&quot;- 添加引用：&quot;&gt;&lt;/a&gt;- 添加引用：&lt;/h3&gt;&lt;h3 id=&quot;添加按钮图片：&quot;&gt;&lt;a href=&quot;#添加按钮图片：&quot; class=&quot;headerlink&quot; title=&quot;- 添加按钮图片：&quot;&gt;&lt;/a&gt;- 添加按钮图片：&lt;/h3&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h2 id=&quot;主题颜色配置&quot;&gt;&lt;a href=&quot;#主题颜色配置&quot; class=&quot;headerlink&quot; title=&quot;主题颜色配置&quot;&gt;&lt;/a&gt;主题颜色配置&lt;/h2&gt;&lt;hr&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h1 id=&quot;Pacman&quot;&gt;&lt;a href=&quot;#Pacman&quot; class=&quot;headerlink&quot; title=&quot;Pacman&quot;&gt;&lt;/a&gt;Pacman&lt;/h1&gt;&lt;p&gt;Pacman is a flat and responsive design theme for &lt;a hr
+      &lt;h2 id=&quot;添加多说评论系统及个性化&quot;&gt;&lt;a href=&quot;#添加多说评论系统及个性化&quot; class=&quot;headerlink&quot; title=&quot;添加多说评论系统及个性化&quot;&gt;&lt;/a&gt;添加多说评论系统及个性化&lt;/h2&gt;&lt;hr&gt;
+&lt;h3 id=&quot;参考网址&quot;&gt;&lt;a href=&quot;#参考网址
     
     </summary>
     
-      <category term="Hexo" scheme="http://www.fakerbin.com/categories/Hexo/"/>
+      <category term="本博客主题" scheme="http://www.fakerbin.com/categories/%E6%9C%AC%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98/"/>
     
     
-      <category term="学习" scheme="http://www.fakerbin.com/tags/Study/"/>
+      <category term="Hexo" scheme="http://www.fakerbin.com/tags/Hexo/"/>
     
-  </entry>
-  
-  <entry>
-    <title>Life</title>
-    <link href="http://www.fakerbin.com/2016-03-13/Life/"/>
-    <id>http://www.fakerbin.com/2016-03-13/Life/</id>
-    <published>2016-03-12T16:34:43.000Z</published>
-    <updated>2016-03-13T11:08:32.743Z</updated>
-    
-    <content type="html">&lt;h1 id=&quot;老婆我只想对你说：&quot;&gt;&lt;a href=&quot;#老婆我只想对你说：&quot; class=&quot;headerlink&quot; title=&quot;老婆我只想对你说：&quot;&gt;&lt;/a&gt;老婆我只想对你说：&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;不要想多了好吗，真的没有什么的，我知道你是爱我，关心我，才会在乎我，老公也爱你，那个照片真的只是无意中拍的。&lt;/strong&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;老婆我只想对你说：&quot;&gt;&lt;a href=&quot;#老婆我只想对你说：&quot; class=&quot;headerlink&quot; title=&quot;老婆我只想对你说：&quot;&gt;&lt;/a&gt;老婆我只想对你说：&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;不要想多了好吗，真的没有什么的，我知道你是爱我，关心我，才会在乎我，
-    
-    </summary>
-    
+      <category term="Pacman" scheme="http://www.fakerbin.com/tags/Pacman/"/>
     
   </entry>
   
