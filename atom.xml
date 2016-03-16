@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.fakerbin.com/"/>
-  <updated>2016-03-15T16:57:42.259Z</updated>
+  <updated>2016-03-15T17:59:31.917Z</updated>
   <id>http://www.fakerbin.com/</id>
   
   <author>
@@ -16,11 +16,27 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>test</title>
+    <link href="http://www.fakerbin.com/2016-03-16/test/"/>
+    <id>http://www.fakerbin.com/2016-03-16/test/</id>
+    <published>2016-03-15T17:59:31.000Z</published>
+    <updated>2016-03-15T17:59:31.917Z</updated>
+    
+    <content type="html"></content>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>本博客主题设置</title>
     <link href="http://www.fakerbin.com/2016-03-15/%E6%9C%AC%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE/"/>
     <id>http://www.fakerbin.com/2016-03-15/本博客主题设置/</id>
     <published>2016-03-15T06:06:46.000Z</published>
-    <updated>2016-03-15T16:57:42.259Z</updated>
+    <updated>2016-03-15T18:06:12.181Z</updated>
     
     <content type="html">&lt;h2 id=&quot;添加多说评论系统及个性化&quot;&gt;&lt;a href=&quot;#添加多说评论系统及个性化&quot; class=&quot;headerlink&quot; title=&quot;添加多说评论系统及个性化&quot;&gt;&lt;/a&gt;添加多说评论系统及个性化&lt;/h2&gt;&lt;hr&gt;
 &lt;h3 id=&quot;参考网址&quot;&gt;&lt;a href=&quot;#参考网址&quot; class=&quot;headerlink&quot; title=&quot;- 参考网址:&quot;&gt;&lt;/a&gt;- 参考网址:&lt;/h3&gt;&lt;ol&gt;
@@ -55,14 +71,14 @@
 &lt;p&gt;&lt;a href=&quot;http://wsgzao.github.io/post/hexo-scroll-to-top/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考网址：Hexo添加返回顶部按钮&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id=&quot;添加EJS代码：&quot;&gt;&lt;a href=&quot;#添加EJS代码：&quot; class=&quot;headerlink&quot; title=&quot;- 添加EJS代码：&quot;&gt;&lt;/a&gt;- 添加EJS代码：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;新建文件/themes/pacman/layout/_partial/totop.ejs，添加如下代码:
 &lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; os&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sys&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; sys.path&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; oscsadcas&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sysdcadc asssssssssssssssssssss&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; sys.pathdsdcdas&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;h3 id=&quot;添加JS代码：&quot;&gt;&lt;a href=&quot;#添加JS代码：&quot; class=&quot;headerlink&quot; title=&quot;- 添加JS代码：&quot;&gt;&lt;/a&gt;- 添加JS代码：&lt;/h3&gt;&lt;h3 id=&quot;添加引用：&quot;&gt;&lt;a href=&quot;#添加引用：&quot; class=&quot;headerlink&quot; title=&quot;- 添加引用：&quot;&gt;&lt;/a&gt;- 添加引用：&lt;/h3&gt;&lt;h3 id=&quot;添加按钮图片：&quot;&gt;&lt;a href=&quot;#添加按钮图片：&quot; class=&quot;headerlink&quot; title=&quot;- 添加按钮图片：&quot;&gt;&lt;/a&gt;- 添加按钮图片：&lt;/h3&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;h2 id=&quot;主题颜色配置&quot;&gt;&lt;a href=&quot;#主题颜色配置&quot; class=&quot;headerlink&quot; title=&quot;主题颜色配置&quot;&gt;&lt;/a&gt;主题颜色配置&lt;/h2&gt;&lt;hr&gt;
 </content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;添加多说评论系统及个性化&quot;&gt;&lt;a href=&quot;#添加多说评论系统及个性化&quot; class=&quot;headerlink&quot; title=&quot;添加多说评论系统及个性化&quot;&gt;&lt;/a&gt;添加多说评论系统及个性化&lt;/h2&gt;&lt;hr&gt;
-&lt;h3 id=&quot;参考网址&quot;&gt;&lt;a href=&quot;#参考网址
+      caonima
     
     </summary>
     
