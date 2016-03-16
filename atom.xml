@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.fakerbin.com/"/>
-  <updated>2016-03-16T02:35:21.941Z</updated>
+  <updated>2016-03-16T08:17:48.074Z</updated>
   <id>http://www.fakerbin.com/</id>
   
   <author>
@@ -16,13 +16,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>本博客主题设置</title>
+    <title>Horizon</title>
+    <link href="http://www.fakerbin.com/2016-03-16/Horizon/"/>
+    <id>http://www.fakerbin.com/2016-03-16/Horizon/</id>
+    <published>2016-03-16T07:51:50.000Z</published>
+    <updated>2016-03-16T08:17:48.074Z</updated>
+    
+    <content type="html">&lt;p&gt;此篇博文主要介绍Horizon的视图相关问题！&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;问题介绍&quot;&gt;&lt;a href=&quot;#问题介绍&quot; class=&quot;headerlink&quot; title=&quot;问题介绍&quot;&gt;&lt;/a&gt;问题介绍&lt;/h3&gt;&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;以下是在&lt;code&gt;dashboard&lt;/code&gt;中认证成功后直接访问&lt;code&gt;http://host/images/&lt;/code&gt;时调用的视图模板&lt;code&gt;openstack_dashboard\dashboards\project\images\templates\images\index.html&lt;/code&gt;:&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;% extends &#39;base.html&#39; %&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;% load i18n %&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;% block title %&amp;#125;&amp;#123;% trans &quot;Images&quot; %&amp;#125;&amp;#123;% endblock %&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;% block main %&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#123;&amp;#123; table.render &amp;#125;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;% endblock %&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;此篇博文主要介绍Horizon的视图相关问题！&lt;br&gt;
+    
+    </summary>
+    
+      <category term="OpenStack" scheme="http://www.fakerbin.com/categories/OpenStack/"/>
+    
+    
+      <category term="Horizon" scheme="http://www.fakerbin.com/tags/Horizon/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Pacman主题设定</title>
     <link href="http://www.fakerbin.com/2016-03-15/%E6%9C%AC%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A2%98%E8%AE%BE%E7%BD%AE/"/>
     <id>http://www.fakerbin.com/2016-03-15/本博客主题设置/</id>
     <published>2016-03-15T06:06:46.000Z</published>
-    <updated>2016-03-16T02:35:21.941Z</updated>
+    <updated>2016-03-16T07:40:37.875Z</updated>
     
-    <content type="html">&lt;p&gt;hello, world!&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+    <content type="html">&lt;p&gt;折腾了两三天，终于把Hexo博客给顺利跑起来了，这也是自己的第一个博客。虽然自己对其中的很多原理也没搞清楚，但是终归是可以用了——工具是拿来用的，不是拿来折腾的！！！&lt;br&gt;这篇博文记录了自己搭建Hexo博客的整个过程，没有改插件，也没有创新，你可以把她看做是网上教程的一个小小汇总。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h1 id=&quot;域名与-Github-Pages&quot;&gt;&lt;a href=&quot;#域名与-Github-Pages&quot; class=&quot;headerlink&quot; title=&quot;域名与 Github Pages&quot;&gt;&lt;/a&gt;域名与 Github Pages&lt;/h1&gt;&lt;hr&gt;
+&lt;h1 id=&quot;Hexo个性化&quot;&gt;&lt;a href=&quot;#Hexo个性化&quot; class=&quot;headerlink&quot; title=&quot;Hexo个性化&quot;&gt;&lt;/a&gt;Hexo个性化&lt;/h1&gt;&lt;hr&gt;
 &lt;h2 id=&quot;添加多说评论系统及个性化&quot;&gt;&lt;a href=&quot;#添加多说评论系统及个性化&quot; class=&quot;headerlink&quot; title=&quot;添加多说评论系统及个性化&quot;&gt;&lt;/a&gt;添加多说评论系统及个性化&lt;/h2&gt;&lt;hr&gt;
 &lt;h3 id=&quot;参考网址&quot;&gt;&lt;a href=&quot;#参考网址&quot; class=&quot;headerlink&quot; title=&quot;- 参考网址:&quot;&gt;&lt;/a&gt;- 参考网址:&lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://ssk.91txh.com/209#&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;我采用的方法&lt;/a&gt;&lt;/p&gt;
@@ -54,16 +84,29 @@
 &lt;p&gt;Hexo已经为用户实现了清晰的模块化设计，我们只需要根据规范编写合适的EJS和JS文件放入指定目录并在所需位置进行引用即可，这里给大家分享如何为Hexo增加返回顶部功能。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;a href=&quot;http://wsgzao.github.io/post/hexo-scroll-to-top/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;参考网址：Hexo添加返回顶部按钮&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;添加EJS代码：&quot;&gt;&lt;a href=&quot;#添加EJS代码：&quot; class=&quot;headerlink&quot; title=&quot;- 添加EJS代码：&quot;&gt;&lt;/a&gt;- 添加EJS代码：&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;新建文件/themes/pacman/layout/_partial/totop.ejs，添加如下代码:
-&lt;/code&gt;&lt;/pre&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; os&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sys&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; sys.path&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; oscsadcas&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;import&lt;/span&gt; sysdcadc asssssssssssssssssssss&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;print&lt;/span&gt; sys.pathdsdcdas&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h3 id=&quot;添加JS代码：&quot;&gt;&lt;a href=&quot;#添加JS代码：&quot; class=&quot;headerlink&quot; title=&quot;- 添加JS代码：&quot;&gt;&lt;/a&gt;- 添加JS代码：&lt;/h3&gt;&lt;h3 id=&quot;添加引用：&quot;&gt;&lt;a href=&quot;#添加引用：&quot; class=&quot;headerlink&quot; title=&quot;- 添加引用：&quot;&gt;&lt;/a&gt;- 添加引用：&lt;/h3&gt;&lt;h3 id=&quot;添加按钮图片：&quot;&gt;&lt;a href=&quot;#添加按钮图片：&quot; class=&quot;headerlink&quot; title=&quot;- 添加按钮图片：&quot;&gt;&lt;/a&gt;- 添加按钮图片：&lt;/h3&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;h3 id=&quot;添加EJS代码：&quot;&gt;&lt;a href=&quot;#添加EJS代码：&quot; class=&quot;headerlink&quot; title=&quot;- 添加EJS代码：&quot;&gt;&lt;/a&gt;- 添加EJS代码：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;新建文件&lt;code&gt;/themes/pacman/layout/_partial/totop.ejs&lt;/code&gt; 添加如下代码:&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;id&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;totop&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;style&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;position:fixed;bottom:150px;right:50px;cursor: pointer;&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;title&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;返回顶部&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;img&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;/imgs/scrollup.png&quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;a&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;添加JS代码：&quot;&gt;&lt;a href=&quot;#添加JS代码：&quot; class=&quot;headerlink&quot; title=&quot;- 添加JS代码：&quot;&gt;&lt;/a&gt;- 添加JS代码：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;新建文件&lt;code&gt;/themes/pacman/source/js/totop.js&lt;/code&gt;，添加如下代码:&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;$&lt;/span&gt;) &lt;/span&gt;&amp;#123; &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;// When to show the scroll link&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;// higher number = scroll link appears further down the page   &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; upperLimit = &lt;span class=&quot;number&quot;&gt;150&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;// Our scroll link element&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; scrollElem = $(&lt;span class=&quot;string&quot;&gt;&#39;#totop&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;// Scroll to top speed&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; scrollSpeed = &lt;span class=&quot;number&quot;&gt;500&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;   &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;// Show and hide the scroll to top link based on scroll position   &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	scrollElem.hide();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	$(&lt;span class=&quot;built_in&quot;&gt;window&lt;/span&gt;).scroll(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; (&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;            &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; scrollTop = $(&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;).scrollTop();       &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; ( scrollTop &amp;gt; upperLimit ) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			$(scrollElem).stop().fadeTo(&lt;span class=&quot;number&quot;&gt;300&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;// fade back in           &lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt;&amp;#123;       &lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;			$(scrollElem).stop().fadeTo(&lt;span class=&quot;number&quot;&gt;300&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;); &lt;span class=&quot;comment&quot;&gt;// fade out&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&lt;span class=&quot;comment&quot;&gt;// Scroll to top animation on click&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	$(scrollElem).click(&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;		$(&lt;span class=&quot;string&quot;&gt;&#39;html, body&#39;&lt;/span&gt;).animate(&amp;#123;scrollTop:&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;&amp;#125;, scrollSpeed); &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;	&amp;#125;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;)(jQuery);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;添加引用：&quot;&gt;&lt;a href=&quot;#添加引用：&quot; class=&quot;headerlink&quot; title=&quot;- 添加引用：&quot;&gt;&lt;/a&gt;- 添加引用：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;修改&lt;code&gt;/themes/pacman/layout/_partial/after_footer.ejs&lt;/code&gt;，在末尾添加以下代码:&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;lt;%- partial(&lt;span class=&quot;string&quot;&gt;&#39;totop&#39;&lt;/span&gt;) %&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;%- config.root %&amp;gt;js/totop.js&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;undefined&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;添加按钮图片：&quot;&gt;&lt;a href=&quot;#添加按钮图片：&quot; class=&quot;headerlink&quot; title=&quot;- 添加按钮图片：&quot;&gt;&lt;/a&gt;- 添加按钮图片：&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;复制下图到&lt;code&gt;/themes/pacman/source/imgs&lt;/code&gt;目录下，文件名为&lt;code&gt;scrollup.png&lt;/code&gt;:&lt;br&gt;&lt;img src=&quot;http://www.fakerbin.com/img/scrollup.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;现在你可以&lt;code&gt;hexo s&lt;/code&gt;试试效果。&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
 &lt;h2 id=&quot;主题颜色配置&quot;&gt;&lt;a href=&quot;#主题颜色配置&quot; class=&quot;headerlink&quot; title=&quot;主题颜色配置&quot;&gt;&lt;/a&gt;主题颜色配置&lt;/h2&gt;&lt;hr&gt;
 </content>
     
     <summary type="html">
     
-      Hello, word
+      &lt;p&gt;折腾了两三天，终于把Hexo博客给顺利跑起来了，这也是自己的第一个博客。虽然自己对其中的很多原理也没搞清楚，但是终归是可以用了——工具是拿来用的，不是拿来折腾的！！！&lt;br&gt;这篇博文记录了自己搭建Hexo博客的整个过程，没有改插件，也没有创新，你可以把她看做是网上教程的一个小小汇总。&lt;br&gt;
     
     </summary>
     
