@@ -1,0 +1,507 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Python Standard Library 学习（翻译） | Hebin Technology Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hebin">
+    
+
+    
+    <meta name="description" content="此篇博文是阅读Python标准库时的一些翻译及心得。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python Standard Library 学习（翻译）">
+<meta property="og:url" content="http://www.fakerbin.com/2016-03-17/Python-Standard-Library-学习（翻译）/index.html">
+<meta property="og:site_name" content="Hebin Technology Blog">
+<meta property="og:description" content="此篇博文是阅读Python标准库时的一些翻译及心得。">
+<meta property="og:updated_time" content="2016-03-17T09:33:52.663Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python Standard Library 学习（翻译）">
+<meta name="twitter:description" content="此篇博文是阅读Python标准库时的一些翻译及心得。">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hebin Technology Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Hebin Technology Blog" title="Hebin Technology Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hebin Technology Blog">Hebin Technology Blog</a></h1>
+				<h2 class="blog-motto">一个有态度的技术博客！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于作者</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016-03-17/Python-Standard-Library-学习（翻译）/" title="Python Standard Library 学习（翻译）" itemprop="url">Python Standard Library 学习（翻译）</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hebin" target="_blank" itemprop="author">Hebin</a>
+		
+  <p class="article-time">
+    <time datetime="2016-03-17T08:37:36.000Z" itemprop="datePublished"> 发表于 2016-03-17</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置函数"><span class="toc-number">2.</span> <span class="toc-text">内置函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置常量"><span class="toc-number">3.</span> <span class="toc-text">内置常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置类型"><span class="toc-number">4.</span> <span class="toc-text">内置类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置异常"><span class="toc-number">5.</span> <span class="toc-text">内置异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文本处理服务"><span class="toc-number">6.</span> <span class="toc-text">文本处理服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二进制数据服务"><span class="toc-number">7.</span> <span class="toc-text">二进制数据服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-number">8.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字及数学有关模块"><span class="toc-number">9.</span> <span class="toc-text">数字及数学有关模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数式编程模块"><span class="toc-number">10.</span> <span class="toc-text">函数式编程模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件与目录访问"><span class="toc-number">11.</span> <span class="toc-text">文件与目录访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据持久化"><span class="toc-number">12.</span> <span class="toc-text">数据持久化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据压缩与归档"><span class="toc-number">13.</span> <span class="toc-text">数据压缩与归档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件格式"><span class="toc-number">14.</span> <span class="toc-text">文件格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加密服务"><span class="toc-number">15.</span> <span class="toc-text">加密服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通用操作系统服务"><span class="toc-number">16.</span> <span class="toc-text">通用操作系统服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并发执行"><span class="toc-number">17.</span> <span class="toc-text">并发执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程间通信与网络"><span class="toc-number">18.</span> <span class="toc-text">进程间通信与网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#互联网资料处理"><span class="toc-number">19.</span> <span class="toc-text">互联网资料处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构化标记处理工具"><span class="toc-number">20.</span> <span class="toc-text">结构化标记处理工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#互联网协议与支持"><span class="toc-number">21.</span> <span class="toc-text">互联网协议与支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多媒体服务"><span class="toc-number">22.</span> <span class="toc-text">多媒体服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#国际化"><span class="toc-number">23.</span> <span class="toc-text">国际化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序框架"><span class="toc-number">24.</span> <span class="toc-text">程序框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tk图形用户界面"><span class="toc-number">25.</span> <span class="toc-text">Tk图形用户界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发工具"><span class="toc-number">26.</span> <span class="toc-text">开发工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调试与性能分析"><span class="toc-number">27.</span> <span class="toc-text">调试与性能分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软件打包与发布"><span class="toc-number">28.</span> <span class="toc-text">软件打包与发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python运行时服务"><span class="toc-number">29.</span> <span class="toc-text">Python运行时服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义Python解释器"><span class="toc-number">30.</span> <span class="toc-text">自定义Python解释器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导入模块"><span class="toc-number">31.</span> <span class="toc-text">导入模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python语言服务"><span class="toc-number">32.</span> <span class="toc-text">Python语言服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杂项服务"><span class="toc-number">33.</span> <span class="toc-text">杂项服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows特定服务"><span class="toc-number">34.</span> <span class="toc-text">Windows特定服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix特定服务"><span class="toc-number">35.</span> <span class="toc-text">Unix特定服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作废的模块"><span class="toc-number">36.</span> <span class="toc-text">作废的模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#未文档化的模块"><span class="toc-number">37.</span> <span class="toc-text">未文档化的模块</span></a></li></ol>
+		
+		</div>
+		
+		<p>此篇博文是阅读Python标准库时的一些翻译及心得。<br><br><br><a id="more"></a></p>
+<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><h3 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a><strong>内置函数</strong></h3><h3 id="内置常量"><a href="#内置常量" class="headerlink" title="内置常量"></a><strong>内置常量</strong></h3><h3 id="内置类型"><a href="#内置类型" class="headerlink" title="内置类型"></a><strong>内置类型</strong></h3><h3 id="内置异常"><a href="#内置异常" class="headerlink" title="内置异常"></a><strong>内置异常</strong></h3><h3 id="文本处理服务"><a href="#文本处理服务" class="headerlink" title="文本处理服务"></a><strong>文本处理服务</strong></h3><h3 id="二进制数据服务"><a href="#二进制数据服务" class="headerlink" title="二进制数据服务"></a>二进制数据服务</h3><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a><strong>数据类型</strong></h3><h3 id="数字及数学有关模块"><a href="#数字及数学有关模块" class="headerlink" title="数字及数学有关模块"></a>数字及数学有关模块</h3><h3 id="函数式编程模块"><a href="#函数式编程模块" class="headerlink" title="函数式编程模块"></a>函数式编程模块</h3><h3 id="文件与目录访问"><a href="#文件与目录访问" class="headerlink" title="文件与目录访问"></a><strong>文件与目录访问</strong></h3><h3 id="数据持久化"><a href="#数据持久化" class="headerlink" title="数据持久化"></a><strong><em>数据持久化</em></strong></h3><h3 id="数据压缩与归档"><a href="#数据压缩与归档" class="headerlink" title="数据压缩与归档"></a>数据压缩与归档</h3><h3 id="文件格式"><a href="#文件格式" class="headerlink" title="文件格式"></a>文件格式</h3><h3 id="加密服务"><a href="#加密服务" class="headerlink" title="加密服务"></a>加密服务</h3><h3 id="通用操作系统服务"><a href="#通用操作系统服务" class="headerlink" title="通用操作系统服务"></a>通用操作系统服务</h3><h3 id="并发执行"><a href="#并发执行" class="headerlink" title="并发执行"></a><strong>并发执行</strong></h3><h3 id="进程间通信与网络"><a href="#进程间通信与网络" class="headerlink" title="进程间通信与网络"></a><strong>进程间通信与网络</strong></h3><h3 id="互联网资料处理"><a href="#互联网资料处理" class="headerlink" title="互联网资料处理"></a>互联网资料处理</h3><h3 id="结构化标记处理工具"><a href="#结构化标记处理工具" class="headerlink" title="结构化标记处理工具"></a>结构化标记处理工具</h3><h3 id="互联网协议与支持"><a href="#互联网协议与支持" class="headerlink" title="互联网协议与支持"></a>互联网协议与支持</h3><h3 id="多媒体服务"><a href="#多媒体服务" class="headerlink" title="多媒体服务"></a>多媒体服务</h3><h3 id="国际化"><a href="#国际化" class="headerlink" title="国际化"></a>国际化</h3><h3 id="程序框架"><a href="#程序框架" class="headerlink" title="程序框架"></a>程序框架</h3><h3 id="Tk图形用户界面"><a href="#Tk图形用户界面" class="headerlink" title="Tk图形用户界面"></a>Tk图形用户界面</h3><h3 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h3><h3 id="调试与性能分析"><a href="#调试与性能分析" class="headerlink" title="调试与性能分析"></a><strong>调试与性能分析</strong></h3><h3 id="软件打包与发布"><a href="#软件打包与发布" class="headerlink" title="软件打包与发布"></a><strong>软件打包与发布</strong></h3><h3 id="Python运行时服务"><a href="#Python运行时服务" class="headerlink" title="Python运行时服务"></a>Python运行时服务</h3><h3 id="自定义Python解释器"><a href="#自定义Python解释器" class="headerlink" title="自定义Python解释器"></a>自定义Python解释器</h3><h3 id="导入模块"><a href="#导入模块" class="headerlink" title="导入模块"></a>导入模块</h3><h3 id="Python语言服务"><a href="#Python语言服务" class="headerlink" title="Python语言服务"></a>Python语言服务</h3><h3 id="杂项服务"><a href="#杂项服务" class="headerlink" title="杂项服务"></a>杂项服务</h3><h3 id="Windows特定服务"><a href="#Windows特定服务" class="headerlink" title="Windows特定服务"></a><strong>Windows特定服务</strong></h3><h3 id="Unix特定服务"><a href="#Unix特定服务" class="headerlink" title="Unix特定服务"></a><strong>Unix特定服务</strong></h3><h3 id="作废的模块"><a href="#作废的模块" class="headerlink" title="作废的模块"></a>作废的模块</h3><h3 id="未文档化的模块"><a href="#未文档化的模块" class="headerlink" title="未文档化的模块"></a>未文档化的模块</h3>  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Python/">Python</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/标准库/">标准库</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.fakerbin.com/2016-03-17/Python-Standard-Library-学习（翻译）/" data-title="Python Standard Library 学习（翻译） | Hebin Technology Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016-03-18/Problem-A-Lazy-Spelling-Bee/" title="Problem A. Lazy Spelling Bee">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Problem A. Lazy Spelling Bee</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016-03-16/Horizon/"  title="Horizon">
+ <strong>下一篇：</strong><br/> 
+ <span>Horizon
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016-03-17/Python-Standard-Library-学习（翻译）/" data-title="Python Standard Library 学习（翻译）" data-url="http://www.fakerbin.com/2016-03-17/Python-Standard-Library-学习（翻译）/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置函数"><span class="toc-number">2.</span> <span class="toc-text">内置函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置常量"><span class="toc-number">3.</span> <span class="toc-text">内置常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置类型"><span class="toc-number">4.</span> <span class="toc-text">内置类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内置异常"><span class="toc-number">5.</span> <span class="toc-text">内置异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文本处理服务"><span class="toc-number">6.</span> <span class="toc-text">文本处理服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二进制数据服务"><span class="toc-number">7.</span> <span class="toc-text">二进制数据服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型"><span class="toc-number">8.</span> <span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字及数学有关模块"><span class="toc-number">9.</span> <span class="toc-text">数字及数学有关模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数式编程模块"><span class="toc-number">10.</span> <span class="toc-text">函数式编程模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件与目录访问"><span class="toc-number">11.</span> <span class="toc-text">文件与目录访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据持久化"><span class="toc-number">12.</span> <span class="toc-text">数据持久化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据压缩与归档"><span class="toc-number">13.</span> <span class="toc-text">数据压缩与归档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件格式"><span class="toc-number">14.</span> <span class="toc-text">文件格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#加密服务"><span class="toc-number">15.</span> <span class="toc-text">加密服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通用操作系统服务"><span class="toc-number">16.</span> <span class="toc-text">通用操作系统服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并发执行"><span class="toc-number">17.</span> <span class="toc-text">并发执行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进程间通信与网络"><span class="toc-number">18.</span> <span class="toc-text">进程间通信与网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#互联网资料处理"><span class="toc-number">19.</span> <span class="toc-text">互联网资料处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结构化标记处理工具"><span class="toc-number">20.</span> <span class="toc-text">结构化标记处理工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#互联网协议与支持"><span class="toc-number">21.</span> <span class="toc-text">互联网协议与支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多媒体服务"><span class="toc-number">22.</span> <span class="toc-text">多媒体服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#国际化"><span class="toc-number">23.</span> <span class="toc-text">国际化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#程序框架"><span class="toc-number">24.</span> <span class="toc-text">程序框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tk图形用户界面"><span class="toc-number">25.</span> <span class="toc-text">Tk图形用户界面</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开发工具"><span class="toc-number">26.</span> <span class="toc-text">开发工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调试与性能分析"><span class="toc-number">27.</span> <span class="toc-text">调试与性能分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软件打包与发布"><span class="toc-number">28.</span> <span class="toc-text">软件打包与发布</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python运行时服务"><span class="toc-number">29.</span> <span class="toc-text">Python运行时服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自定义Python解释器"><span class="toc-number">30.</span> <span class="toc-text">自定义Python解释器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#导入模块"><span class="toc-number">31.</span> <span class="toc-text">导入模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Python语言服务"><span class="toc-number">32.</span> <span class="toc-text">Python语言服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#杂项服务"><span class="toc-number">33.</span> <span class="toc-text">杂项服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows特定服务"><span class="toc-number">34.</span> <span class="toc-text">Windows特定服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Unix特定服务"><span class="toc-number">35.</span> <span class="toc-text">Unix特定服务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作废的模块"><span class="toc-number">36.</span> <span class="toc-text">作废的模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#未文档化的模块"><span class="toc-number">37.</span> <span class="toc-text">未文档化的模块</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="hebin10" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/OpenStack/" title="OpenStack">OpenStack<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/本博客主题/" title="本博客主题">本博客主题<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Horizon/" title="Horizon">Horizon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Pacman/" title="Pacman">Pacman<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/标准库/" title="标准库">标准库<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://docs.openstack.org" target="_blank" title="OpenStack Docs">OpenStack Docs</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stackoverflow.com/users/6075126" target="_blank" title="StackOverFlow">StackOverFlow</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hebin, A Technical Staff of CECGW. <br/>
+			This is my blog, recording my technical experience.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/hebin10" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/6075126" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Hebin">Hebin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"fakerbin"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
