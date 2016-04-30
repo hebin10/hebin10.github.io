@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.fakerbin.com/"/>
-  <updated>2016-04-30T16:00:38.539Z</updated>
+  <updated>2016-03-18T08:59:40.280Z</updated>
   <id>http://www.fakerbin.com/</id>
   
   <author>
@@ -14,25 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Test</title>
-    <link href="http://www.fakerbin.com/2016-05-01/Test/"/>
-    <id>http://www.fakerbin.com/2016-05-01/Test/</id>
-    <published>2016-04-30T16:00:38.000Z</published>
-    <updated>2016-04-30T16:00:38.539Z</updated>
-    
-    <content type="html">&lt;p&gt;请在此处写下你的文章简介！&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;请在此处写下你的文章简介！&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Problem C. Not So Random</title>
