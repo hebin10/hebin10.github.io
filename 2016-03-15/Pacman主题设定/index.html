@@ -96,6 +96,13 @@
 </header>
 	<div class="article-content">
 		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#域名与-Github-Pages"><span class="toc-number">1.</span> <span class="toc-text">域名与 Github Pages</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo个性化"><span class="toc-number">2.</span> <span class="toc-text">Hexo个性化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加多说评论系统及个性化"><span class="toc-number">2.1.</span> <span class="toc-text">添加多说评论系统及个性化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考网址"><span class="toc-number">2.1.1.</span> <span class="toc-text">- 参考网址:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加返回文章顶部按钮"><span class="toc-number">2.2.</span> <span class="toc-text">添加返回文章顶部按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加EJS代码："><span class="toc-number">2.2.1.</span> <span class="toc-text">- 添加EJS代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加JS代码："><span class="toc-number">2.2.2.</span> <span class="toc-text">- 添加JS代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加引用："><span class="toc-number">2.2.3.</span> <span class="toc-text">- 添加引用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加按钮图片："><span class="toc-number">2.2.4.</span> <span class="toc-text">- 添加按钮图片：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主题颜色配置"><span class="toc-number">2.3.</span> <span class="toc-text">主题颜色配置</span></a></li></ol></li></ol>
+		
+		</div>
+		
 		<p>折腾了两三天，终于把Hexo博客给顺利跑起来了，这也是自己的第一个博客。虽然自己对其中的很多原理也没搞清楚，但是终归是可以用了——工具是拿来用的，不是拿来折腾的！！！<br>这篇博文记录了自己搭建Hexo博客的整个过程，没有改插件，也没有创新，你可以把她看做是网上教程的一个小小汇总。<br><a id="more"></a></p>
 <p><br></p>
 <h1 id="域名与-Github-Pages"><a href="#域名与-Github-Pages" class="headerlink" title="域名与 Github Pages"></a>域名与 Github Pages</h1><hr>
@@ -203,6 +210,13 @@
 
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#域名与-Github-Pages"><span class="toc-number">1.</span> <span class="toc-text">域名与 Github Pages</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo个性化"><span class="toc-number">2.</span> <span class="toc-text">Hexo个性化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#添加多说评论系统及个性化"><span class="toc-number">2.1.</span> <span class="toc-text">添加多说评论系统及个性化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#参考网址"><span class="toc-number">2.1.1.</span> <span class="toc-text">- 参考网址:</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加返回文章顶部按钮"><span class="toc-number">2.2.</span> <span class="toc-text">添加返回文章顶部按钮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#添加EJS代码："><span class="toc-number">2.2.1.</span> <span class="toc-text">- 添加EJS代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加JS代码："><span class="toc-number">2.2.2.</span> <span class="toc-text">- 添加JS代码：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加引用："><span class="toc-number">2.2.3.</span> <span class="toc-text">- 添加引用：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加按钮图片："><span class="toc-number">2.2.4.</span> <span class="toc-text">- 添加按钮图片：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主题颜色配置"><span class="toc-number">2.3.</span> <span class="toc-text">主题颜色配置</span></a></li></ol></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -371,6 +385,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
