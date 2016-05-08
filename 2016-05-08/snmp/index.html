@@ -1,0 +1,630 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>使用snmp协议获取centos系统相关信息 | Hebin Technology Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Hebin">
+    
+
+    
+    <meta name="description" content="使用snmp获取设备CPU、内存、流量及磁盘信息。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用snmp协议获取centos系统相关信息">
+<meta property="og:url" content="http://www.fakerbin.com/2016-05-08/snmp/index.html">
+<meta property="og:site_name" content="Hebin Technology Blog">
+<meta property="og:description" content="使用snmp获取设备CPU、内存、流量及磁盘信息。">
+<meta property="og:image" content="http://www.fakerbin.com/131305119.gif">
+<meta property="og:image" content="http://www.fakerbin.com/2033581_1381377458dcsk.png">
+<meta property="og:image" content="http://www.fakerbin.com/131321163.gif">
+<meta property="og:updated_time" content="2016-05-08T10:13:14.964Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用snmp协议获取centos系统相关信息">
+<meta name="twitter:description" content="使用snmp获取设备CPU、内存、流量及磁盘信息。">
+<meta name="twitter:image" content="http://www.fakerbin.com/131305119.gif">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Hebin Technology Blog" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.png">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Hebin Technology Blog" title="Hebin Technology Blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hebin Technology Blog">Hebin Technology Blog</a></h1>
+				<h2 class="blog-motto">一个有态度的技术博客！</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/tags">标签</a></li>
+					
+						<li><a href="/about">关于作者</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" autocomplete="off" name="q" maxlength="20" placeholder="搜索" />
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016-05-08/snmp/" title="使用snmp协议获取centos系统相关信息" itemprop="url">使用snmp协议获取centos系统相关信息</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Hebin" target="_blank" itemprop="author">Hebin</a>
+		
+  <p class="article-time">
+    <time datetime="2016-05-08T01:20:14.000Z" itemprop="datePublished"> 发表于 2016-05-08</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<p>使用snmp获取设备CPU、内存、流量及磁盘信息。<br><a id="more"></a></p>
+<p><br></p>
+<p>实验环境：</p>
+<pre><code>操作系统：CentOS Linux release 7.2.1511 
+内核：3.10.0-327.13.1.el7.x86_64 
+</code></pre><p>注：<br>    由于北京WAF设备授权证书过期，无法配置使用snmp，因此在centos进行试验。</p>
+<p><br></p>
+<h2 id="snmp及net-snmp简介"><a href="#snmp及net-snmp简介" class="headerlink" title="snmp及net-snmp简介"></a>snmp及net-snmp简介</h2><h3 id="1-什么是SNMP"><a href="#1-什么是SNMP" class="headerlink" title="1. 什么是SNMP"></a>1. 什么是SNMP</h3><p> 　　“简单网络管理协议”，用于网络管理的协议。SNMP用于网络设备的管理。SNMP的工作方式：管理员需要向设备获取数据，所以SNMP提供了“读”操作；管理员需要向设备执行设置操作，所以SNMP提供了“写”操作；设备需要在重要状况改变的时候，向管理员通报事件的发生，所以SNMP提供了“Trap”操作。</p>
+<h3 id="2-支持的基本操作"><a href="#2-支持的基本操作" class="headerlink" title="2. 支持的基本操作"></a>2. 支持的基本操作</h3><p> 　　对于网络管理，我们面对的数据是设备的配置、参数、状态等信息，面对的操作是读取和设置；同时，因为网络设备众多，为了能及时得到设备的重要状态，还要求设备能主动地汇报重要状态，这就是报警功能。<br>　　读取设备信息—— get<br>　　设置设备参数—— set<br>　　发送设备告警—— trap</p>
+<h3 id="3-snmp协议版本"><a href="#3-snmp协议版本" class="headerlink" title="3. snmp协议版本"></a>3. snmp协议版本</h3><p>　　SNMP共有v1，v2，v3这三个版本：<br>　　1. v1和v2都具有基本的读、写MIB功能。<br>　　2. v2增加了警报、批量数据获取、管理站和管理站通信能力。<br>　　3. v3在v2的基础上增加了USM，使用加密的数据和用户验证技术，提高了安全性。<br>　　4. 另外，RMON是SNMP的一个重要扩展，为SNMP增加了子网流量、统计、分析能力。现有两个版本： Rmon：提供了OSI七层网络结构中网络层和数据链路层监视能力。Rmon2：提供了OSI七层网络结构中网络层之上各层的监视能力。</p>
+<h3 id="4-mib介绍"><a href="#4-mib介绍" class="headerlink" title="4. mib介绍"></a>4. mib介绍</h3><p>　　MIB－管理信息库：IETF规定的管理信息库MIB（由中定义了可访问的网络设备及其属性，由对象识别符（OID：Object Identifier）唯一指定。MIB是一个树形结构，SNMP协议消息通过遍历MIB树形目录中的节点来访问网络中的设备。下图给出了NMS系统中SNMP可访问网络设备的对象识别树（OID：Object Identifier）结构：<br><img src="131305119.gif" alt=""></p>
+<p><br></p>
+<p>上图中的节点是从internet开始的，其实上面还有几个节点请如下图：<br><img src="2033581_1381377458dcsk.png" alt=""></p>
+<p><br></p>
+<p>下图给出了对一个DS1线路状态进行查询的OID设置例子:<br><img src="131321163.gif" alt=""></p>
+<h3 id="5-net-snmp工具简介"><a href="#5-net-snmp工具简介" class="headerlink" title="5. net-snmp工具简介"></a>5. net-snmp工具简介</h3><p>　　Net-snmp是一个开源的SNMP项目。最新版本为：5.7.2。net-snmp支持snmpv1、snmpv2、snmpv3，支持基于IPv4和IPv6的SNMP应用程序。</p>
+<pre><code>* Net-snmp提供完整的API用于SNMP应用程序开发，包括C和Perl的API 。
+* 一个功能强大且可扩展的SNMP代理：snmpd开发者可以开发动态模块扩展snmpd，net-snmp内置扩展子代理与主代理的通信协议。
+* 提供众多命令行工具检查和使用SNMP协议
+* 一个图形化的MIB浏览工具
+* 一个Trap接收进程，用于接收和显示Trap，并将Trap记录到日志文件中。
+</code></pre><p>　　使用net-snmp作为学习SNMP的工具，搭建一个net-snmp环境，用来测试snmp协议。</p>
+<h2 id="安装net-snmp"><a href="#安装net-snmp" class="headerlink" title="安装net-snmp"></a>安装net-snmp</h2><pre><code>yum intall net-snmp net-snmp-devel net-snmp-libs net-snmp-utils
+</code></pre><p><strong> 命令介绍： </strong></p>
+<ul>
+<li>net-snmp-config：（net-snmp-devel包中）查看已安装的net-snmp的相关信息，比如可以用<code>net-snmp-config --default-mibdirs</code>查看MIB文件的位置（也可以用<code>snmptranslate -Dinit_mib .1.3 2&gt;&amp;1 |grep MIBDIR</code>查看）；也可以用：<br><code>net-snmp-config --create-snmpv3-user [-ro] [-a authpass] [-x privpass] [-X DES|AES] [-A MD5|SHA] [username]</code>来创建<code>snmpv3 user</code>：<pre><code>-a authpass：用户密码
+-A MD5|SHA：用户密码加密方式
+-x privpass：传输加密密码
+-X DES|AES：传输加密方式
+username：用户名
+</code></pre>  对应的参数可以在WAF设配中的SNMP配置中一一对应。</li>
+<li><strong><code>snmpconf</code></strong>：创建或者修改snmp的相关配置文件</li>
+<li><strong><code>snmpget</code></strong>：模拟snmp的GetRequest操作的工具。一般用来获取管理信息节点下单个示例的信息。</li>
+<li><strong><code>snmpnext</code></strong>：模拟snmp的GetNextRequest操作的工具。用来获取一个管理信息实例的下一个可用实例数据。一般用来遍历SNMP中的表格数据。容错性比<code>snmpget</code>好，因此一般用它，而不是用<code>snmpget</code>。</li>
+<li><strong><code>snmpset</code></strong>：模拟snmp的SetRequest操作的工具。用来设置可以写的管理信息。一般用来配置设备或对设备执行操作。</li>
+<li><strong><code>snmpbulkget</code></strong>：模拟snmp的GetBulkRequest操作的工具。用来获取大块的数据。一般在大量读取大块数据时使用，以提高带宽利用率，并且比使用snmpget、snmpgetnext及snmpwalk有更强的容错能力，代理会返回尽可能多的数据，比其它命令更有保证。</li>
+<li><strong><code>snmpwalk</code></strong>：利用GetNextRequest对给定的管理树进行遍历的工具。一般用来对表格类型管理信息进行遍历。</li>
+<li><strong><code>snmptrap</code></strong>：模拟trap的工具。用来发送模拟trap。一般用来测试管理站安装和配置是否正确，或者用来验证开发的Trap接收程序是否可以正常工作。</li>
+<li>snmptrapd：接收并显示trap的工具。一般在代理的开发过程中，接收代理发来的Trap，并将PDU细节打印出来，也来测试Trap发送功能是否正常。</li>
+<li>snmpinform：模拟发送InformRequest的工具。跟snmptrap类似，用来发送模拟的带应答的Trap，以测试管理站或自己开发的接收程序。</li>
+<li>snmptable：使用GetNextRequest 和 GetBulkRequest操作读取表信息，以列表形式显示的工具。</li>
+<li>snmpstatus：从SNMP实体读取几个重要的管理信息以确定设备状态的工具。用来简单测定设备状态。</li>
+<li><strong><code>snmpbulkwalk</code></strong>：利用GetBulkRequest实现对给定管理树进行遍历的工具。对表格类型的管理信息进行遍历读取。</li>
+<li>snmpdelta：用来监视Integer类型的管理对象，会及时报告值改变情况的工具。用于监测一个设备或开发中的代理。</li>
+<li>snmptest：是一个复杂的工具，可以监测和管理一个网络实体的信息，通过SNMP请求操作与管理实体通信。</li>
+<li><strong><code>snmptranslate</code></strong>：将对象名字和标识符相互转换的工具。用于数据格式的对象标识和可读式字符串的数据名称的转换。类似于域名与IP地址的关系。</li>
+<li><strong><code>snmpusm</code></strong>：SNMPv3 USM配置工具。用于SNMPv3的用户管理。</li>
+<li><strong><code>snmpvacm</code></strong>：为一个网络实体创建和维护SNMPv3的基于视图访问控制参数的工具。用于维护SNMPv3的视图访问控制。</li>
+<li><strong><code>snmpd</code></strong>：Net-snmp开发的主代理程序，包括众多标准MIB的实现。还可以使用子代理对其进行扩展，是一个功能强大的SNMP代理。Linux、Unix和Windows系统运行snmpd后，直接具备了SNMP协议支持，可以被管理站管理。许多商业化的Linux中使用snmpd作为系统的SNMP代理。</li>
+<li>snmpdf：通过SNMP访问并显示网络实体磁盘利用情况的工具。用来监测网络实体的磁盘。<br>　　上面这些命令常用的参数有：<pre><code>-v 1|2c|3 : snmp版本
+-c community : v1/v2的community name
+</code></pre>　　例如：<br><code>[root@centos-desktop snmp]# snmpwalk -c public -v2c localhost if</code><pre><code>IF-MIB::ifIndex.1 = INTEGER: 1
+IF-MIB::ifIndex.2 = INTEGER: 2
+IF-MIB::ifIndex.3 = INTEGER: 3
+IF-MIB::ifIndex.4 = INTEGER: 4
+IF-MIB::ifDescr.1 = STRING: lo
+IF-MIB::ifDescr.2 = STRING: eno16777736
+IF-MIB::ifDescr.3 = STRING: virbr0
+IF-MIB::ifDescr.4 = STRING: virbr0-nic
+IF-MIB::ifType.1 = INTEGER: softwareLoopback(24)
+IF-MIB::ifType.2 = INTEGER: ethernetCsmacd(6)
+IF-MIB::ifType.3 = INTEGER: ethernetCsmacd(6)
+IF-MIB::ifType.4 = INTEGER: ethernetCsmacd(6)
+IF-MIB::ifMtu.1 = INTEGER: 65536
+IF-MIB::ifMtu.2 = INTEGER: 1500
+IF-MIB::ifMtu.3 = INTEGER: 1500
+IF-MIB::ifMtu.4 = INTEGER: 1500
+IF-MIB::ifSpeed.1 = Gauge32: 10000000
+IF-MIB::ifSpeed.2 = Gauge32: 1000000000
+IF-MIB::ifSpeed.3 = Gauge32: 0
+IF-MIB::ifSpeed.4 = Gauge32: 10000000
+IF-MIB::ifPhysAddress.1 = STRING: 
+IF-MIB::ifPhysAddress.2 = STRING: 0:c:29:48:3f:11
+IF-MIB::ifPhysAddress.3 = STRING: 52:54:0:c6:ee:66
+IF-MIB::ifPhysAddress.4 = STRING: 52:54:0:c6:ee:66
+</code></pre></li>
+</ul>
+<p><code>[root@centos-desktop snmp]# snmpget -c public -v1 localhost system.sysDescr.0</code><br>        SNMPv2-MIB::sysDescr.0 = STRING: Linux centos-desktop 3.10.0-327.13.1.el7.x86_64 #1 SMP Thu Mar 31 16:04:38 UTC 2016 x86_64</p>
+<h2 id="snmpd配置"><a href="#snmpd配置" class="headerlink" title="snmpd配置"></a>snmpd配置</h2><h3 id="snmp-v1-v2配置"><a href="#snmp-v1-v2配置" class="headerlink" title="snmp v1/v2配置"></a>snmp v1/v2配置</h3><ul>
+<li>编辑配置文件<code>/etc/snmp/snmpd.conf</code>如下：  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">## snmp v1/v2配置</span><br><span class="line">com2sec notConfigUser    default       public</span><br><span class="line">group   notConfigGroup   v1            notConfigUser</span><br><span class="line">group   notConfigGroup   v2c           notConfigUser</span><br><span class="line">view    systemview       included      .1</span><br><span class="line">access  notConfigGroup   &quot;&quot;   any      noauth    exact  systemview systemview none</span><br><span class="line">includeAllDisks 5%</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>相关解释：</strong></p>
+<ul>
+<li><code>com2sec notConfigUser    default       public</code>：<br>　　定义安全名<code>notConfigUser</code>,并将共同体<code>public</code>归入其中，这里notConfigUser相当于用户名，public相当于密码，因此我们只要知道community（共同体的名称），就可以访相应设备管理信息。</li>
+<li><code>group   notConfigGroup   v1            notConfigUser</code>:<br>　　将定义安全组<code>notConfigGroup</code>，并将安全名<code>notConfigUser</code>归入其中，<code>v1</code>参数表示支持snmp v1，可选值为v1|v2c|usm</li>
+<li><code>view    systemview       included      .1</code>：<br>　　定义systemview视图，表示<code>systemview</code>这个试图包含<code>.1</code>节点及其子节点信息，这里也就是整个管理树。</li>
+<li><code>access  notConfigGroup   &quot;&quot;   any      noauth    exact  systemview systemview none</code>：<br>　　访问控制，表示<code>notConfigGroup</code>这个安全组可以‘只读’，‘读写’<code>systemview</code>这个视图，<code>any</code>表示安全模式（v1|v2|usm），<code>noauth</code>表示安全模式（auth|noauth|priv），v1，v2c中只能使用noauth。后面三个参数<code>systemview``systemview``none</code>代表的含义一次是：授权可读的视图，授权可写视图，授权可发送trap的视图。</li>
+<li><code>includeAllDisks 5%</code>:<br>　　磁盘检查配置，这里<code>includeAllDisks</code>表示监视设备所有磁盘，<code>5%</code>表示当磁盘剩余空间小于等于5%时，发送告警（trap）。</li>
+</ul>
+<h3 id="snmp-v3-usm-配置"><a href="#snmp-v3-usm-配置" class="headerlink" title="snmp v3(usm)配置"></a>snmp v3(usm)配置</h3><ul>
+<li><p>利用<code>net-snmp-config</code>命令创建v3用户(首先关闭snmpd服务-systemctl stop snmpd)：</p>
+<pre><code>net-snmp-config --create-snmpv3-user -ro -a 1234qwer -A SHA  -x 1234qwer -X AES snmpv3user
+</code></pre><p>  <code>[root@centos-desktop snmp]# net-snmp-config --create-snmpv3-user -ro -a 1234qwer -A SHA  -x 1234qwer -X AES snmpv3user</code></p>
+<pre><code>adding the following line to /var/lib/net-snmp/snmpd.conf:
+       createUser snmpv3user SHA &quot;1234qwer&quot; AES 1234qwer
+adding the following line to /etc/snmp/snmpd.conf:
+       rouser snmpv3user
+</code></pre></li>
+</ul>
+<p>　　    可以看出在<code>/etc/snmp/cnmpd.conf</code>中最后一行增加了一句<code>rouser snmpv3user001</code>。在<code>/etc/snmp/snmpd.conf</code>中添加了一句<code>rouser snmpv3user</code>，这表示snmpv3user这个用户默认可以<strong>读取</strong>整个管理信息树上所有节点。</p>
+<ul>
+<li><p>手动创建并配置snmpv3用户：</p>
+<ul>
+<li>关闭snmpd服务</li>
+<li>在<code>/var/lib/net-snmp/snmpd.conf</code>中添加一句<code>createUser snmpv3user SHA &quot;1234qwer&quot; AES 1234qwer</code></li>
+<li>在<code>/etc/snmp/snmpd.conf</code>中添加一句<code>rwuser snmpv3user .1</code>，格式为<code>r[o|w]user [−s SECMODEL] USER [noauth|auth|priv [OID | −V VIEW [CONTEXT]]]</code></li>
+<li><p>启动snmpd服务<br>这样和利用net-snmp-config命令的作用是一样的。测试：<br><code>[root@centos-desktop snmp]# snmpwalk -l authPriv -u snmpv3user -A 1234qwer -a SHA -X 1234qwer -x AES localhost if</code></p>
+<pre><code>IF-MIB::ifIndex.1 = INTEGER: 1
+IF-MIB::ifIndex.2 = INTEGER: 2
+IF-MIB::ifIndex.3 = INTEGER: 3
+IF-MIB::ifIndex.4 = INTEGER: 4
+IF-MIB::ifDescr.1 = STRING: lo
+IF-MIB::ifDescr.2 = STRING: eno16777736
+IF-MIB::ifDescr.3 = STRING: virbr0
+IF-MIB::ifDescr.4 = STRING: virbr0-nic
+IF-MIB::ifType.1 = INTEGER: softwareLoopback(24)
+IF-MIB::ifType.2 = INTEGER: ethernetCsmacd(6)
+IF-MIB::ifType.3 = INTEGER: ethernetCsmacd(6)
+IF-MIB::ifType.4 = INTEGER: ethernetCsmacd(6)
+IF-MIB::ifMtu.1 = INTEGER: 65536
+IF-MIB::ifMtu.2 = INTEGER: 1500
+IF-MIB::ifMtu.3 = INTEGER: 1500
+IF-MIB::ifMtu.4 = INTEGER: 1500
+.........
+</code></pre><p><strong>注：</strong><br>v3 验证常用参数：</p>
+<pre><code>-v 3                   specifies SNMP version to use
+-u USER-NAME          set security name (e.g. bert)
+-l LEVEL              set security level (noAuthNoPriv|authNoPriv|authPriv)
+-a PROTOCOL           set authentication protocol (MD5|SHA)
+-A PASSPHRASE         set authentication protocol pass phrase
+-x PROTOCOL           set privacy protocol (DES|AES)
+-X PASSPHRASE         set privacy protocol pass phrase
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="安装pysnmp库"><a href="#安装pysnmp库" class="headerlink" title="安装pysnmp库"></a>安装pysnmp库</h2><pre><code>yum install python-devel -y
+pip install pysnmp
+pip install pysnmp-mibs
+</code></pre><p>　　pysnmp是一个纯python实现snmp协议，并且完全支持v1/v2/v3版本，可以模拟get，walk，next，bulkwalk，trap等命令。pysnmp4.3.0之前版本只有原生api，由<code>CommandGenerator</code>生成一个类似net-snmp的各种命令；pysnmp4.3.0及之后版本，新增<code>hlapi</code>，调用更为简洁。</p>
+<h2 id="利用pysnmp获取设备信息"><a href="#利用pysnmp获取设备信息" class="headerlink" title="利用pysnmp获取设备信息"></a>利用pysnmp获取设备信息</h2><p>本实验采用原生api。</p>
+<ul>
+<li>snmp v2：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pysnmp.entity.rfc3413.oneliner <span class="keyword">import</span> cmdgen</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printErr</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getCpuUsage</span><span class="params">(targetHost, targetPort, cmd, community)</span>:</span></span><br><span class="line">    errIndication, errStatus, errIndex, varBindTable = cmd.nextCmd(</span><br><span class="line">        cmdgen.CommunityData(community, mpModel=<span class="number">1</span>), 	<span class="comment"># mpModel=1,表示使用v2协议</span></span><br><span class="line">        cmdgen.UdpTransportTarget((targetHost,targetPort)), <span class="comment"># 设备ip及端口</span></span><br><span class="line">        cmdgen.MibVariable(<span class="string">'UCD-SNMP-MIB'</span>,<span class="string">'ssCpuIdle'</span>),  <span class="comment"># 需要访问信息的MIB库及子节点，也可以用形如'1.3.6.1.4'的方式来定义</span></span><br><span class="line">        <span class="comment">#lookupValues=True</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">if</span> errIndication:</span><br><span class="line">        <span class="keyword">print</span> errIndication</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> errStatus:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'%s at %s'</span> % (</span><br><span class="line">                errStatus.prettyPrint(),</span><br><span class="line">                errIndex <span class="keyword">and</span> varBindTable[<span class="number">-1</span>][int(errIndex)<span class="number">-1</span>] <span class="keyword">or</span> <span class="string">'?'</span></span><br><span class="line">                )</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="number">100.0</span> - float(varBindTable[<span class="number">0</span>][<span class="number">0</span>][<span class="number">1</span>].prettyPrint())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getMemUsage</span><span class="params">(targetHost, targetPort, cmd, community)</span>:</span></span><br><span class="line">    errIndication, errStatus, errIndex, varBindTable = cmd.nextCmd(</span><br><span class="line">        cmdgen.CommunityData(community, mpModel=<span class="number">1</span>),</span><br><span class="line">        cmdgen.UdpTransportTarget((targetHost,targetPort)),</span><br><span class="line">        cmdgen.MibVariable(<span class="string">'UCD-SNMP-MIB'</span>,<span class="string">'memTotalReal'</span>), <span class="comment">#'1.3.6.1.4.1.2021.4.5',</span></span><br><span class="line">        cmdgen.MibVariable(<span class="string">'UCD-SNMP-MIB'</span>,<span class="string">'memAvailReal'</span>), <span class="comment">#'1.3.6.1.4.1.2021.4.6',</span></span><br><span class="line">        cmdgen.MibVariable(<span class="string">'UCD-SNMP-MIB'</span>,<span class="string">'memBuffer'</span>), <span class="comment">#'1.3.6.1.4.1.2021.4.14',</span></span><br><span class="line">        cmdgen.MibVariable(<span class="string">'UCD-SNMP-MIB'</span>,<span class="string">'memCached'</span>), <span class="comment"># '1.3.6.1.4.1.2021.4.15',</span></span><br><span class="line">        <span class="comment">#lookupValues=True</span></span><br><span class="line">        <span class="comment">#lookupNames=True</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">if</span> errIndication:</span><br><span class="line">        <span class="keyword">print</span> errIndication</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> errStatus:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'%s at %s'</span> % (</span><br><span class="line">                errStatus.prettyPrint(),</span><br><span class="line">                errIndex <span class="keyword">and</span> varBindTable[<span class="number">-1</span>][int(errIndex)<span class="number">-1</span>] <span class="keyword">or</span> <span class="string">'?'</span></span><br><span class="line">                )</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            mysum = <span class="number">0.0</span></span><br><span class="line">            totalAvailReal = float(varBindTable[<span class="number">0</span>][<span class="number">0</span>][<span class="number">1</span>].prettyPrint())</span><br><span class="line">            <span class="keyword">for</span> var <span class="keyword">in</span> varBindTable:</span><br><span class="line">                <span class="keyword">for</span> name , val <span class="keyword">in</span> var:</span><br><span class="line">                    mysum += float(val.prettyPrint())</span><br><span class="line">            <span class="keyword">return</span> (<span class="number">2</span>*totalAvailReal - mysum) / totalAvailReal * <span class="number">100.0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getIfaceTraffic</span><span class="params">(targetHost, targetPort, cmd, community, period)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getNowTraffic</span><span class="params">()</span>:</span></span><br><span class="line">        errIndication, errStatus, errIndex, varBindTable = cmd.nextCmd(</span><br><span class="line">            cmdgen.CommunityData(community, mpModel=<span class="number">1</span>),</span><br><span class="line">            cmdgen.UdpTransportTarget((targetHost,targetPort)),</span><br><span class="line">            cmdgen.MibVariable(<span class="string">'IF-MIB'</span>, <span class="string">'ifDescr'</span>), <span class="comment"># '1.3.6.1.2.1.2.2.1.2'</span></span><br><span class="line">            cmdgen.MibVariable(<span class="string">'IF-MIB'</span>, <span class="string">'ifInOctets'</span>), <span class="comment"># '1.3.6.1.2.1.2.2.1.10'</span></span><br><span class="line">            cmdgen.MibVariable(<span class="string">'IF-MIB'</span>, <span class="string">'ifOutOctets'</span>), <span class="comment">#'1.3.6.1.2.1.2.2.1.16'</span></span><br><span class="line">            <span class="comment">#lookupValues=True,</span></span><br><span class="line">            <span class="comment">#lookupNames=True</span></span><br><span class="line">        )</span><br><span class="line">        <span class="keyword">if</span> errIndication:</span><br><span class="line">            <span class="keyword">print</span> errIndication</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> errStatus:</span><br><span class="line">                <span class="keyword">print</span> <span class="string">'%s at %s'</span> % (errStatus.prettyPrint(), errIndex \</span><br><span class="line">				<span class="keyword">and</span> varBindTable[<span class="number">-1</span>][int(errIndex)<span class="number">-1</span>] <span class="keyword">or</span> <span class="string">'?'</span>)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                result = []</span><br><span class="line">                <span class="comment">#print varBindTable</span></span><br><span class="line">                <span class="keyword">for</span> var <span class="keyword">in</span> varBindTable:</span><br><span class="line">                    tempResult = &#123;&#125;</span><br><span class="line">                    <span class="keyword">for</span> name , val <span class="keyword">in</span> var:</span><br><span class="line">                        tempResult[name.getLabel()[len(name.getLabel())<span class="number">-1</span>]] = val.prettyPrint()</span><br><span class="line">                    result.append(tempResult)</span><br><span class="line">                <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">    preTraffic = getNowTraffic()</span><br><span class="line">    <span class="comment">#print preTraffic</span></span><br><span class="line">    time.sleep(period)</span><br><span class="line">    afterTraffic = getNowTraffic()</span><br><span class="line">    <span class="comment">#print afterTraffic</span></span><br><span class="line"></span><br><span class="line">    traffic = []</span><br><span class="line">    <span class="keyword">if</span>(len(preTraffic) != len(afterTraffic)):</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        ifaceNum = len(preTraffic)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(ifaceNum):</span><br><span class="line">        <span class="keyword">if</span> preTraffic[i][<span class="string">'ifDescr'</span>] == afterTraffic[i][<span class="string">'ifDescr'</span>]:</span><br><span class="line">            m = float(preTraffic[i][<span class="string">'ifInOctets'</span>])</span><br><span class="line">            mm = float(afterTraffic[i][<span class="string">'ifInOctets'</span>])</span><br><span class="line">            n = float(preTraffic[i][<span class="string">'ifOutOctets'</span>])</span><br><span class="line">            nn = float(afterTraffic[i][<span class="string">'ifOutOctets'</span>])</span><br><span class="line">            ifaceName = preTraffic[i][<span class="string">'ifDescr'</span>]</span><br><span class="line">            traffic.append(&#123;</span><br><span class="line">                <span class="string">'ifaceName'</span>:ifaceName,</span><br><span class="line">                <span class="string">'inTraffic(Mbps)'</span>:(mm-m)/period/<span class="number">1048576</span>*<span class="number">8</span>,</span><br><span class="line">                <span class="string">'outTraffic(Mbps)'</span>:(nn-n)/period/<span class="number">1048576</span>*<span class="number">8</span></span><br><span class="line">            &#125;)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">return</span> traffic</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getDiskUsage</span><span class="params">(targetHost, targetPort, cmd, community)</span>:</span></span><br><span class="line">    errIndication, errStatus, errIndex, varBindTable = cmd.nextCmd(</span><br><span class="line">        cmdgen.CommunityData(community, mpModel=<span class="number">1</span>),</span><br><span class="line">        cmdgen.UdpTransportTarget((targetHost,targetPort)),</span><br><span class="line">        cmdgen.MibVariable(<span class="string">'UCD-SNMP-MIB'</span>, <span class="string">'dskPath'</span>), <span class="comment"># '1.3.6.1.4.1.2021.9.1.2'</span></span><br><span class="line">        cmdgen.MibVariable(<span class="string">'UCD-SNMP-MIB'</span>, <span class="string">'dskTotal'</span>), <span class="comment"># '1.3.6.1.4.1.2021.9.1.6'</span></span><br><span class="line">        cmdgen.MibVariable(<span class="string">'UCD-SNMP-MIB'</span>, <span class="string">'dskPercent'</span>), <span class="comment">#'1.3.6.1.4.1.2021.9.1.9'</span></span><br><span class="line">        cmdgen.MibVariable(<span class="string">'UCD-SNMP-MIB'</span>, <span class="string">'dskDevice'</span>), <span class="comment">#'1.3.6.1.4.1.2021.9.1.3'</span></span><br><span class="line">        <span class="comment">#lookupValues=True,</span></span><br><span class="line">        <span class="comment">#lookupNames=True</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">if</span> errIndication:</span><br><span class="line">        <span class="keyword">print</span> errIndication</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> errStatus:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">'%s at %s'</span> % (errStatus.prettyPrint(), errIndex \</span><br><span class="line">			<span class="keyword">and</span> varBindTable[<span class="number">-1</span>][int(errIndex)<span class="number">-1</span>] <span class="keyword">or</span> <span class="string">'?'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result = []</span><br><span class="line">            <span class="keyword">for</span> var <span class="keyword">in</span> varBindTable:</span><br><span class="line">                tempResult = &#123;&#125;</span><br><span class="line">                <span class="keyword">for</span> name , val <span class="keyword">in</span> var:</span><br><span class="line">                    tempResult[name.getLabel()[len(name.getLabel())<span class="number">-1</span>]] = val.prettyPrint()</span><br><span class="line">                result.append(tempResult)</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    targetHost = <span class="string">'192.168.184.136'</span></span><br><span class="line">    targetPort = <span class="number">161</span></span><br><span class="line">    cmd =cmdgen.CommandGenerator()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'CPU使用率：%s'</span> % \</span><br><span class="line">        getCpuUsage(targetHost, targetPort, cmd, <span class="string">'public'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'内存使用率：%s'</span> % \</span><br><span class="line">        getMemUsage(targetHost, targetPort, cmd, <span class="string">'public'</span>)</span><br><span class="line"></span><br><span class="line">    period = <span class="number">10</span></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'网卡流量（%ss)：%s'</span> % (period, getIfaceTraffic(targetHost, targetPort, cmd, <span class="string">'public'</span>, period))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">print</span> <span class="string">'磁盘使用情况：%s'</span> %  getDiskUsage(targetHost, targetPort, cmd, <span class="string">'public'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">CPU使用率：1.0</span><br><span class="line">内存使用率：29.1881375539</span><br><span class="line">网卡流量（10s)：[&#123;&apos;inTraffic(Mbps)&apos;: 0.0, &apos;ifaceName&apos;: u&apos;lo&apos;, &apos;outTraffic(Mbps)&apos;: 0.0&#125;, </span><br><span class="line">&#123;&apos;inTraffic(Mbps)&apos;: 0.0009063720703125, &apos;ifaceName&apos;: u&apos;eno16777736&apos;, &apos;outTraffic(Mbps)&apos;: 0.00093841552734375&#125;,</span><br><span class="line">&#123;&apos;inTraffic(Mbps)&apos;: 0.0, &apos;ifaceName&apos;: u&apos;virbr0&apos;, &apos;outTraffic(Mbps)&apos;: 0.0&#125;,</span><br><span class="line">&#123;&apos;inTraffic(Mbps)&apos;: 0.0, &apos;ifaceName&apos;: u&apos;virbr0-nic&apos;, &apos;outTraffic(Mbps)&apos;: 0.0&#125;]</span><br><span class="line">磁盘使用情况：[&#123;&apos;dskTotal&apos;: &apos;27740944&apos;, &apos;dskPercent&apos;: &apos;21&apos;, &apos;dskPath&apos;: u&apos;/&apos;, &apos;dskDevice&apos;: u&apos;/dev/mapper/centos-root&apos;&#125;, </span><br><span class="line">&#123;&apos;dskTotal&apos;: &apos;2015908&apos;, &apos;dskPercent&apos;: &apos;0&apos;, &apos;dskPath&apos;: u&apos;/dev/shm&apos;, &apos;dskDevice&apos;: u&apos;tmpfs&apos;&#125;, </span><br><span class="line">&#123;&apos;dskTotal&apos;: &apos;2015908&apos;, &apos;dskPercent&apos;: &apos;0&apos;, &apos;dskPath&apos;: u&apos;/run&apos;, &apos;dskDevice&apos;: u&apos;tmpfs&apos;&#125;, </span><br><span class="line">&#123;&apos;dskTotal&apos;: &apos;2015908&apos;, &apos;dskPercent&apos;: &apos;0&apos;, &apos;dskPath&apos;: u&apos;/sys/fs/cgroup&apos;, &apos;dskDevice&apos;: u&apos;tmpfs&apos;&#125;, </span><br><span class="line">&#123;&apos;dskTotal&apos;: &apos;508588&apos;, &apos;dskPercent&apos;: &apos;42&apos;, &apos;dskPath&apos;: u&apos;/boot&apos;, &apos;dskDevice&apos;: u&apos;/dev/sda1&apos;&#125;, </span><br><span class="line">&#123;&apos;dskTotal&apos;: &apos;403184&apos;, &apos;dskPercent&apos;: &apos;0&apos;, &apos;dskPath&apos;: u&apos;/run/user/0&apos;, &apos;dskDevice&apos;: u&apos;tmpfs&apos;&#125;]</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>snmp v3</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> pysnmp.entity.rfc3413.oneliner <span class="keyword">import</span> cmdgen</span><br><span class="line"></span><br><span class="line">targetHost = <span class="string">'192.168.184.136'</span></span><br><span class="line">targetPort = <span class="number">161</span></span><br><span class="line">cmd =cmdgen.CommandGenerator()</span><br><span class="line"></span><br><span class="line">errIndication, errStatus, errIndex, varBindTable = cmd.nextCmd(</span><br><span class="line">        cmdgen.UsmUserData( <span class="comment">#与snmp v2相比只是认证用的信息发声了改变，上面是CommunityData</span></span><br><span class="line">            <span class="string">'snmpv3user'</span>,</span><br><span class="line">            authKey=<span class="string">'1234qwer'</span>,</span><br><span class="line">            privKey=<span class="string">'1234qwer'</span>,</span><br><span class="line">            authProtocol=cmdgen.usmHMACSHAAuthProtocol,</span><br><span class="line">            privProtocol=cmdgen.usmAesCfb128Protocol</span><br><span class="line">        ),</span><br><span class="line">        cmdgen.UdpTransportTarget((targetHost,targetPort)),</span><br><span class="line">        cmdgen.MibVariable(<span class="string">'UCD-SNMP-MIB'</span>,<span class="string">'ssCpuIdle'</span>)</span><br><span class="line">        <span class="comment">#lookupValues=True</span></span><br><span class="line">    )</span><br><span class="line"><span class="keyword">if</span> errIndication:</span><br><span class="line">    <span class="keyword">print</span> errIndication</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">if</span> errStatus:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'%s at %s'</span> % (</span><br><span class="line">            errStatus.prettyPrint(),</span><br><span class="line">            errIndex <span class="keyword">and</span> varBindTable[<span class="number">-1</span>][int(errIndex)<span class="number">-1</span>] <span class="keyword">or</span> <span class="string">'?'</span></span><br><span class="line">            )</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="number">100.0</span> - float(varBindTable[<span class="number">0</span>][<span class="number">0</span>][<span class="number">1</span>].prettyPrint())</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<pre><code>1.0
+</code></pre><p>使用snmp v1/v2与snmp v3协议的唯一不同之处，在于验证方式的不同。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://www.fakerbin.com/2016-05-08/snmp/" data-title="使用snmp协议获取centos系统相关信息 | Hebin Technology Blog" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016-03-18/Problem-C-Not-So-Random/"  title="Problem C. Not So Random">
+ <strong>下一篇：</strong><br/> 
+ <span>Problem C. Not So Random
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section id="comments" class="comment">
+	<div class="ds-thread" data-thread-key="2016-05-08/snmp/" data-title="使用snmp协议获取centos系统相关信息" data-url="http://www.fakerbin.com/2016-05-08/snmp/"></div>
+</section>
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+<div class="github-card">
+<p class="asidetitle">Github 名片</p>
+<div class="github-card" data-github="hebin10" data-width="220" data-height="119" data-theme="medium">
+<script type="text/javascript" src="//cdn.jsdelivr.net/github-cards/latest/widget.js" ></script>
+</div>
+  </div>
+
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分类</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/OpenStack/" title="OpenStack">OpenStack<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Python/" title="Python">Python<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/本博客主题/" title="本博客主题">本博客主题<sup>1</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/Hexo/" title="Hexo">Hexo<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Pacman/" title="Pacman">Pacman<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Horizon/" title="Horizon">Horizon<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/标准库/" title="标准库">标准库<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://docs.openstack.org" target="_blank" title="OpenStack Docs">OpenStack Docs</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://stackoverflow.com/users/6075126" target="_blank" title="StackOverFlow">StackOverFlow</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Hebin, A Technical Staff of CECGW. <br/>
+			This is my blog, recording my technical experience.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		<a href="https://github.com/hebin10" target="_blank" class="icon-github" title="github"></a>
+		
+		
+		<a href="http://stackoverflow.com/users/6075126" target="_blank" class="icon-stack-overflow" title="stackoverflow"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="Hebin">Hebin</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"fakerbin"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
